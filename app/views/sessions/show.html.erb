@@ -1,0 +1,27 @@
+
+<h1 style="font-size: 100px">Profile</h1>
+<% if flash[:notice] %>
+  <div style="background: yellow">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<ul class="list-group" style="list-style-type: none; font-size: 40px">
+  <li>
+    ID:
+    <strong><%= @current_user.id %></strong>
+  </li>
+	<li>
+		Nombre:
+		<strong><%= @current_user.username %></strong>
+	</li>
+	<li>
+		Correo:
+		<strong><%= @current_user.email %></strong>
+	</li>
+</ul>
+
+<%= render partial: "user_pokes", locals: {pokes: @current_user.pokes} %>
+
+
+
+<p> <%= link_to "Edit", edit_user_path(@current_user.id), class:"btn btn-default btn-lg" %> </p>

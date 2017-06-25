@@ -1,0 +1,41 @@
+<h1>List of Books</h1>
+
+<% if flash[:notice] %>
+	<div>
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div>
+	<%= form_tag books_path, remote: true, method: :get, class: "js-cars-filter form-inline" do %>
+		<div class="form-group">
+			<%= text_field_tag :q, params[:q], placeholder: "Palabra Clave", class: "form-control" %>
+		</div>
+		<%= button_tag type: "submit", class: "btn btn-default" do %>
+			<span class="fa fa-search"></span>
+		<% end %>
+	<% end %>
+</div>
+
+<table border ="1" class="table table-striped" style="width: 750px; text-align: center">
+	<thead>
+		<tr>
+			<th style="text-align: center">Autor</th>
+			<th style="text-align: center">Title</th>
+			<th style="text-align: center">Category</th>
+			<th style="text-align: center">Price</th>
+			<th style="text-align: center">Quitity Orders</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%- @books.each do |bk| %>
+			<tr>
+				<td><%= Autor.find_by(id: bk.autor_id).name %></td>
+				<td><%= link_to bk.title, book_path(bk) %></td>
+				<td><%= bk.category %></td>
+				<td> Lps. <%= bk.price %> Order.</td>
+				<td>Count</td>
+			</tr>
+		<%- end %>
+	</tbody>
+</table>

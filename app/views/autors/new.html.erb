@@ -1,0 +1,43 @@
+<h1>New Autor</h1>
+<p> <em> Ingrese los datos necesarios: </em> </p>
+
+<% if @autor.errors.any? %>
+  <div>
+    Por favor corrija los siguientes problemas:
+    <ul>
+      <% @autor.errors.full_messages.each do |m| %>
+        <li>
+          <%= m %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @autor do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+  </p>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email%>
+  </p>
+
+  <p>
+    <%= f.label :password, "Password"%>
+    <%= f.password_field :password%>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation, "Confirmate Password"%>
+    <%= f.password_field :password_confirmation%>
+  </p>
+
+  <p>
+    <%= f.submit "Create"%>
+    <%= link_to "Cancelar", root_path%>
+  </p>
+
+<% end %>

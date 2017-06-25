@@ -1,0 +1,43 @@
+<h1 style="font-size: 100px"><%= @book.title %></h1>
+<% if flash[:notice] %>
+  <div style="background: yellow">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<ul>
+  <li>
+    ID:
+    <strong><%= @book.id %></strong>
+  </li>
+	<li>
+		Title:
+		<strong><%= @book.title %></strong>
+	</li>
+	<li>
+		Descripcion:
+		<strong><%= @book.description %></strong>
+	</li>
+  <li>
+    Price:
+    <strong>Lps. <%= @book.price %></strong>
+  </li>
+  <li>
+    Category:
+    <strong><%= @book.category %></strong>
+  </li>
+  <li>
+    Total Orders:
+    <strong><%= total_orders(@book.orders) %></strong>
+  </li>
+</ul>
+
+<%= render partial: "book_orders", locals: {orders: @book.orders} %>
+
+
+<% if current_autor == Autor.find_by(id: @book.autor_id) %>
+  <p> <%= link_to "Edit", edit_book_path(@book.id)%> </p>
+<% end %>
+<p> <%= link_to "New Order", new_book_order_path(@book.id)%> </p>
+<% unless @book.orders.any? %>
+  <p> <%= link_to "Delete", book_path(@book.id), method: :delete%> </p>
+<% end %>

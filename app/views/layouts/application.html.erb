@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Bibliotecario</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+ <!-- Navigation -->
+
+<nav class="navbar navbar-light" style="background-color: #654321; font-size: 25px" role="navigation">
+    <% if current_autor %>
+  <a class="navbar-brand">Order-A-Book - <%= current_autor.name %> </a>
+  <%else%>
+    <a class="navbar-brand">Order-A-Book </a>
+  <% end%>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+      <%= link_to "Home", root_path %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to "Books", books_path %>
+    </li>
+
+    <% if current_autor %>
+
+    <li class="nav-item">
+      <%= link_to "My Books", book_autor_path(current_autor.id) %>
+    </li>
+
+    <li class="nav-item" style="padding-right: 130px">
+      <%= link_to "Log Out", logout_path, data: {method: :delete} %>
+    </li>
+
+    <% else%>
+
+    <li class="nav-item">
+      <%= link_to "Sign In", login_path %>
+    </li>
+
+    <li class="nav-item" style="padding-right: 130px">
+      <%= link_to "Sign Up", new_autor_path %>
+    </li>
+
+    <%end%>
+
+  </ul>
+
+</nav>
+
+<div align= "center">
+    <body background = "https://files.graphiq.com/2307/media/images/Light_Gray_429810_i0.png">
+    <%= yield %>
+  </div>
+
+  </body>
+</html>
