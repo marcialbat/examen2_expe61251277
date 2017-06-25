@@ -7,10 +7,10 @@ class Order < ApplicationRecord
     validate :no_esta_rentado
 
     def no_esta_rentado
-    if Car.find_by(id: car_id).rents.any?
-      @rent = Car.find_by(id: car_id).rents.order("created_at").last
-      if  @rent.rent_end_at > Date.today
-        errors.add(:rent_start_at, "Este carro esta prestado.")
+    if Book.find_by(id: book_id).orders.any?
+      @order = Book.find_by(id: book_id).orders.order("created_at").last
+      if  @order.order_end_at > Date.today
+        errors.add(:order_start_at, "Este carro esta prestado.")
       end
     end
   end
@@ -18,8 +18,7 @@ class Order < ApplicationRecord
     protected
 
     def set_dates
-      self.rent_end_at = Date.today + days.days
-      self.rent_start_at = Date.today
+      self.order_end_at = Date.today 
     end
 
 end

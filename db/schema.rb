@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20170624205655) do
   create_table "autors", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -22,19 +23,21 @@ ActiveRecord::Schema.define(version: 20170624205655) do
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.float    "price"
+    t.decimal    "price"
     t.string   "category"
     t.integer  "quantities"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "autor_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.text     "client"
-    t.float    "total"
+    t.decimal    "total"
     t.integer  "Quatity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "book_id"
   end
 
 end

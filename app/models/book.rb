@@ -8,7 +8,7 @@ class Book < ApplicationRecord
   has_many :orders
 
    def self.categories
-  ["JesusChrist", "Terror", "Adventure", "Science"]
+  ["Romance", "Terror", "Adventure", "Science", "Motivational"]
 end
 
 end
